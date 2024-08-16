@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var yellowView: UIView!
     @IBOutlet var startButton: UIButton!
     
-    private var state = ""
+    private var state: color?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,45 +29,30 @@ class ViewController: UIViewController {
 
     @IBAction func startButtonPressed(_ sender: Any) {
         startButton.setTitle("NEXT", for: .normal)
-        
-//        if redView.alpha < 1 && greenView.alpha < 1 && yellowView.alpha < 1 {
-//            redView.alpha = 1
-//            return
-//        }
-//        if redView.alpha == 1 {
-//            yellowView.alpha = 1
-//            redView.alpha = 0.3
-//            return
-//        }
-//        if yellowView.alpha == 1 {
-//            greenView.alpha = 1
-//            yellowView.alpha = 0.3
-//            return
-//        }
-//        if greenView.alpha == 1 {
-//            redView.alpha = 1
-//            greenView.alpha = 0.3
-//            return
-//        }
-        
+ 
         switch state {
-        case "red":
-            state = "yellow"
+        case .Red:
+            state = .Yellow
             yellowView.alpha = 1
             redView.alpha = 0.3
-        case "yellow":
-            state = "green"
+        case .Yellow:
+            state = .Green
             greenView.alpha = 1
             yellowView.alpha = 0.3
-        case "green":
-            state = "red"
+        case .Green:
+            state = .Red
             redView.alpha = 1
             greenView.alpha = 0.3
         default:
-            state = "red"
+            state = .Red
             redView.alpha = 1
         }
     }
-    
+}
+
+enum color {
+    case Red
+    case Yellow
+    case Green
 }
 
